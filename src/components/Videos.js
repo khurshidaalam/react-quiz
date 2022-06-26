@@ -6,8 +6,9 @@ const Videos = () => {
   return (
     <div className={classes.videos}>
         <Video/>
+        hello from vds
     </div>
-  )
+  );
 }
 
 export default Videos;

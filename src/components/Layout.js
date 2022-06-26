@@ -6,13 +6,15 @@ const Layout = ({Children}) => {
   return (
     <>
     <Nav/>
-    <main class={classes.main}>
-      <div class={classes.container}>
+    <main className={classes.main}>
+      <div className={classes.container}>
         {Children}
+        
+        hello from layout
       </div>
       </main>
     </>
   )
 }
 
-export default Layout
+export default Layout;
