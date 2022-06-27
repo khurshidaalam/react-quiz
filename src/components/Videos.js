@@ -6,7 +6,10 @@ const Videos = () => {
   return (
     <div className={classes.videos}>
         <Video/>
-        hello from vds
+        <Video/>
+        <Video/>
+        <Video/>
+        <Video/>
     </div>
   );
 }
