@@ -1,4 +1,4 @@
-import classes from "../styles/Login.module.css";
+import classes from "../../styles/Login.module.css";
 import Button from "../Button";
 import Form from "../Form";
 import Illustration from "../Illustration";
