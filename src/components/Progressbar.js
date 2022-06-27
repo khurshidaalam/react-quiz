@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from "../styles/Progressbar.module.css";
-import btnclass from "../styles/Button.module.css";
+import Button from "./Button";
 
 const Progressbar = () => {
   return (
@@ -15,10 +15,10 @@ const Progressbar = () => {
             </div>
           </div>
           <a href="result.html">
-            <button className={`${btnclass.button} ${classes.next}`}>
+            <Button className={classes.next}>
               <span>Next Question</span>
               <span className="material-icons-outlined"> arrow_forward </span>
-            </button>
+            </Button>
           </a>
         </div>
   )

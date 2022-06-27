@@ -23,7 +23,7 @@ const Login = () => {
             icon="lock"
           />
 
-          <Button>Submit now</Button>
+          <Button><span>Login now</span></Button>
 
           <div class="info">
             Don't have an account? <a href="signup.html">Signup</a> instead.

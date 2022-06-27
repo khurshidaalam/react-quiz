@@ -1,19 +1,13 @@
 import React from 'react';
 import classes from "../styles/Answers.module.css";
+import Checkbox from "./Checkbox";
 
-const Answers = ({id,ans}) => {
+const Answers = () => {
   return (
     <div className={classes.answers}>
-      <label className={classes.answer} htmlFor={id}>
-            <input type="checkbox" id={id} />
-            A New Hope 1
-      </label>
-      <label className={classes.answer} htmlFor={id}>
-            <input type="checkbox" id={id} />
-            A New Hope 2
-      </label>
+      <Checkbox className={classes.answer} text="A New Hope 1" id="option1"/>
     </div>
   )
 }
 
-export default Answers
+export default Answers;
