@@ -4,6 +4,7 @@ import Form from "../Form";
 import Illustration from "../Illustration";
 import TextInput from "../TextInput";
 import LoginImage from "../../assets/images/login.svg";
+import {Link} from "react-router-dom";
 
 const Login = () => {
   return (
@@ -25,8 +26,8 @@ const Login = () => {
 
           <Button><span>Login now</span></Button>
 
-          <div class="info">
-            Don't have an account? <a href="signup.html">Signup</a> instead.
+          <div className="info">
+            Don't have an account? <Link to="/signup">Signup</Link> instead.
           </div>
         </Form>
       </div>

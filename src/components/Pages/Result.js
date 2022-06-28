@@ -12,4 +12,4 @@ const Result = () => {
   )
 }
 
-export default Result
+export default Result;
