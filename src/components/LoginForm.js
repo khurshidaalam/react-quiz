@@ -7,7 +7,7 @@ import {useAuth} from "./contexts/AuthContext";
 
 const LoginForm = () => {
     const [error,setError] = useState("");
-    const [loading,setLoading] = useState("");
+    const [loading,setLoading] = useState(true);
     const [userData, setUserData] = useState({
       email: "",
       password: ""
