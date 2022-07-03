@@ -6,27 +6,28 @@ import Video from "./Video";
 
 const Videos = () => {
   const [page, setPage] = useState(1);
-  const { loading, error, videos,hasMore } = useVideoList(page);
-  console.log(videos);
+  const { loading, error, videos, hasMore } = useVideoList(page);
+  
 
   return (
-    <div >
+    <div>
       {videos.length > 0 && (
         <InfiniteScroll
           dataLength={videos.length} //This is important field to render the next data
-          next={()=>setPage(page+8)}
+          next={() => setPage(page + 8)}
           hasMore={hasMore}
           loader={<h4>Loading...</h4>}
         >
           {videos.map((video) => {
             const { youtubeID, title, noq } = video;
-            
-             return  noq > 0 ? (
-                  <Link to="/quiz" key={youtubeID}>
-                <Video title={title} id={youtubeID} noq={noq} />
+
+            return noq > 0 ? (
+              <Link to={`/quiz/${youtubeID}`} key={youtubeID}>
+                <Video  title={title} id={youtubeID} noq={noq} />
               </Link>
-                ) : (<Video title={title} id={youtubeID} noq={noq} />)
-             
+            ) : (
+              <Video key={youtubeID} title={title} id={youtubeID} noq={noq} />
+            );
           })}
         </InfiniteScroll>
       )}

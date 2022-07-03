@@ -1,13 +1,25 @@
-import React from 'react';
+import React from "react";
 import classes from "../styles/Answers.module.css";
 import Checkbox from "./Checkbox";
 
-const Answers = () => {
+const Answers = ({ options = [],handleChange }) => {
   return (
     <div className={classes.answers}>
-      <Checkbox className={classes.answer} text="A New Hope 1" id="option1"/>
+      {options.map((option, index) => {
+        const { title, checked } = option;
+        return (
+          <Checkbox
+            className={classes.answer}
+            text={title}
+            value={index}
+            checked={checked}
+            id="option1"
+            onChange={(e)=> handleChange(e, index)}
+          />
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
 export default Answers;
