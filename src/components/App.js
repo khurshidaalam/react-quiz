@@ -27,8 +27,8 @@ const App = () => {
             <Route exact path="/quiz/:id" element={<PrivateRoute />}>
               <Route exact path="/quiz/:id" element={<Quiz />} />
             </Route>
-            <Route exact path="/result" element={<PrivateRoute />}>
-              <Route exact path="/result" element={<Result />} />
+            <Route exact path="/result/:id" element={<PrivateRoute />}>
+              <Route exact path="/result/:id" element={<Result />} />
             </Route>
             <Route path="*" element={"404 not found"} />
           </Routes>

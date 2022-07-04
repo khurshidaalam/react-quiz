@@ -1,11 +1,13 @@
-import { useEffect, useState, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import _ from "lodash";
+import { useEffect, useReducer, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import VideoImage from "../../assets/images/3.jpg";
 import Answers from "../Answers";
 import useQuesList from "../hooks/useQuesList";
 import Miniplayer from "../Miniplayer";
 import Progressbar from "../Progressbar";
-import _ from "lodash";
+import {useAuth} from "../contexts/AuthContext";
+import { getDatabase, set, ref } from "firebase/database";
 
 const initialState = null;
 
@@ -33,16 +35,17 @@ const reducer = (state, action) => {
 const Quiz = () => {
   const { id } = useParams();
   // eslint-disable-next-line
-  const [currentQues, setCurrentQues] = useState();
+  const [currentQues, setCurrentQues] = useState(0);
   const { loading, error, questions } = useQuesList(id);
 
   const [qna, dispatch] = useReducer(reducer, initialState);
+  const {currentUser} = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
       type: "questions",
       value: questions,
-      
     });
   }, [questions]);
 
@@ -54,22 +57,40 @@ const Quiz = () => {
       value: e.target.checked,
     });
   };
+  
 
   const nextQuestion = () => {
     if (currentQues + 1 < questions.length) {
       setCurrentQues((prevques) => prevques + 1);
     }
+    console.log("clicked")
   };
   const prevQuestion = () => {
     if (currentQues >= 1 && currentQues <= questions.length) {
-      setCurrentQues((prevques) => prevques + 1);
+      setCurrentQues((prevques) => prevques - 1);
     }
+  };
+
+  const submitQues = async () => {
+    const {uid} = currentUser;
+    const db = getDatabase();
+    const resultRef = ref(db, `result/${uid}`);
+
+    await set(resultRef, {
+      [id]: qna
+    });
+
+    navigate({
+      pathname: `/result/${id}`,
+      state:{
+        qna, 
+      }
+    });
   };
 
   //calculate percentage of progress
   const percentage =
     questions.length > 0 ? ((currentQues + 1) / questions.length) * 100 : 0;
-  
 
   return (
     <>
@@ -88,8 +109,9 @@ const Quiz = () => {
             next={nextQuestion}
             prev={prevQuestion}
             progress={percentage}
+            submit={submitQues}
           />
-          
+
           <Miniplayer
             src={VideoImage}
             text="#23 React Hooks Bangla - React useReducer hook Bangla"

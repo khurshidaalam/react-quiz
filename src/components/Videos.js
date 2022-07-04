@@ -31,9 +31,10 @@ const Videos = () => {
           })}
         </InfiniteScroll>
       )}
+      {loading && <div>Loading...</div>}
       {!loading && videos.length === 0 && <div> no data found!</div>}
       {error && <div> there is an error</div>}
-      {loading && <div>Loading...</div>}
+      
     </div>
   );
 };

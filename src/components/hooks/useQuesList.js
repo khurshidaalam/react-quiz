@@ -16,14 +16,14 @@ import {
       async function fetchQuestions() {
         //database related works
         const db = getDatabase();
-        const quizRef = ref(db, "quiz/"+ videoID+"/questions");
+        const quizRef = ref(db, `quiz/${videoID}/questions`);
         const quizQuery = query(
             quizRef,
           orderByKey()
         );
         try {
           setError(false);
-          setLoading(true);
+          setLoading(false);
           //request firebase database
           const snapshot = await get(quizQuery);
           if (snapshot.exists()) {
