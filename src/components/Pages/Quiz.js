@@ -6,7 +6,7 @@ import Answers from "../Answers";
 import useQuesList from "../hooks/useQuesList";
 import Miniplayer from "../Miniplayer";
 import Progressbar from "../Progressbar";
-import {useAuth} from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import { getDatabase, set, ref } from "firebase/database";
 
 const initialState = null;
@@ -39,7 +39,7 @@ const Quiz = () => {
   const { loading, error, questions } = useQuesList(id);
 
   const [qna, dispatch] = useReducer(reducer, initialState);
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,13 +57,12 @@ const Quiz = () => {
       value: e.target.checked,
     });
   };
-  
 
   const nextQuestion = () => {
     if (currentQues + 1 < questions.length) {
       setCurrentQues((prevques) => prevques + 1);
     }
-    console.log("clicked")
+    console.log("clicked");
   };
   const prevQuestion = () => {
     if (currentQues >= 1 && currentQues <= questions.length) {
@@ -72,20 +71,18 @@ const Quiz = () => {
   };
 
   const submitQues = async () => {
-    const {uid} = currentUser;
+    const { uid } = currentUser;
     const db = getDatabase();
     const resultRef = ref(db, `result/${uid}`);
 
     await set(resultRef, {
-      [id]: qna
+      [id]: qna,
     });
 
-    navigate({
-      pathname: `/result/${id}`,
-      state:{
-        qna, 
-      }
-    });
+    navigate(
+      `/result/${id}`,
+      { state: qna },
+    );
   };
 
   //calculate percentage of progress
@@ -102,6 +99,7 @@ const Quiz = () => {
           <h4>Question can have multiple answers</h4>
 
           <Answers
+            input
             options={qna[currentQues].options}
             handleChange={handleAnswerChange}
           />
