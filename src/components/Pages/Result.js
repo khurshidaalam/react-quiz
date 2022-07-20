@@ -44,7 +44,6 @@ const Result = () => {
       {!loading && !error && answers.length > 0 && (
         <>
           <Summery score={userScore} noq={answers.length} />
-
           <Analysis answers={answers} />
         </>
       )}

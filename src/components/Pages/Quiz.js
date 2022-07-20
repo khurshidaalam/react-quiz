@@ -112,7 +112,8 @@ const Quiz = () => {
 
           <Miniplayer
             src={VideoImage}
-            text="#23 React Hooks Bangla - React useReducer hook Bangla"
+            id={id}
+            title={qna[currentQues].title}
           />
         </>
       )}
