@@ -22,7 +22,7 @@ const Miniplayer = ({title,id, ...src}) => {
           <span className={`material-icons-outlined ${classes.open}`}> play_circle_filled </span>
           <span className={`material-icons-outlined ${classes.close}`} onClick={miniplayerToggle}> close </span>
           {/* <img {...src} alt="" /> */}
-          <ReactPlayer className={classes.player} url={vdoUrl} playing={showState} controls height={`168px`} width={`300px`} />
+          <ReactPlayer  url={vdoUrl} playing={showState} controls height={`168px`} width={`300px`} />
           <p>{title}</p>
         </div>
   )

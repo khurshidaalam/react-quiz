@@ -22,7 +22,11 @@ const Videos = () => {
             const { youtubeID, title, noq } = video;
 
             return noq > 0 ? (
-              <Link to={`/quiz/${youtubeID}`} key={youtubeID}>
+              <Link to={{pathname:`/quiz/${youtubeID}`, state:{
+                 videoTitle: title 
+                 }
+                 }} 
+                 key={youtubeID}>
                 <Video  title={title} id={youtubeID} noq={noq} />
               </Link>
             ) : (

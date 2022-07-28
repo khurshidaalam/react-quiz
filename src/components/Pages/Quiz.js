@@ -1,13 +1,13 @@
+import { getDatabase, ref, set } from "firebase/database";
 import _ from "lodash";
 import { useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import VideoImage from "../../assets/images/3.jpg";
 import Answers from "../Answers";
+import { useAuth } from "../contexts/AuthContext";
 import useQuesList from "../hooks/useQuesList";
 import Miniplayer from "../Miniplayer";
 import Progressbar from "../Progressbar";
-import { useAuth } from "../contexts/AuthContext";
-import { getDatabase, set, ref } from "firebase/database";
 
 const initialState = null;
 
@@ -41,6 +41,8 @@ const Quiz = () => {
   const [qna, dispatch] = useReducer(reducer, initialState);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+  
+  const {videoTitle} = navigate;
 
   useEffect(() => {
     dispatch({
@@ -79,10 +81,7 @@ const Quiz = () => {
       [id]: qna,
     });
 
-    navigate(
-      `/result/${id}`,
-      { state: qna },
-    );
+    navigate(`/result/${id}`, { state: qna });
   };
 
   //calculate percentage of progress
@@ -110,11 +109,7 @@ const Quiz = () => {
             submit={submitQues}
           />
 
-          <Miniplayer
-            src={VideoImage}
-            id={id}
-            title={qna[currentQues].title}
-          />
+          <Miniplayer src={VideoImage} id={id} title={videoTitle} />
         </>
       )}
     </>
