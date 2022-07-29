@@ -26,7 +26,7 @@ import { useEffect, useState } from "react";
       }
 
       fetchPics();
-
+//eslint-disable-next-line
     }, []);
 
 
