@@ -7,7 +7,7 @@
     const [result, setResult] = useState(null);
   
     useEffect(() => { 
-      async function fetchPics() {
+      async function fetchPics(url,headers,method) {
        
         try {
           setError(false);
