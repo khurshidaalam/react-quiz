@@ -1,14 +1,13 @@
+import { useEffect, useState } from "react";
 
-  import { useEffect, useState } from "react";
-  
-  const useFetch = () => {
+  const useFetch = (url, method, headers) => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState();
     const [result, setResult] = useState(null);
-  
+
     useEffect(() => { 
-      async function fetchPics(url,headers,method) {
-       
+      async function fetchPics() {
+
         try {
           setError(false);
           setLoading(false);
@@ -19,18 +18,18 @@
           });
           const data = await response.json();
           setResult(data);
-          
+
         } catch (err) {
           setError(true);
           setLoading(false);
         }
       }
-  
+
       fetchPics();
-      
+
     }, []);
-    
-  
+
+
     return {
       loading,
       error,
@@ -38,4 +37,3 @@
     };
   };
   export default useFetch;
-  
